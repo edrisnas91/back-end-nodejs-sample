@@ -1,0 +1,168 @@
+components:
+  schemas:
+    CountResponce:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: integer
+          example: 125
+    AdminsCollectionForAdminUserResponce:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        count:
+          type: integer
+          example: 30
+        data:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AdminsForAdminUser'
+    AdminsSingleForAdminUserResponce:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/AdminsForAdminUser'
+    LoginAdminResponce:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+            username:
+              type: string
+            accessType:
+              type: string
+              enum: [admin, operator]
+            status:
+              type: string
+              enum: [active, block]
+            token:
+              type: string
+          example:
+            id: "AD000001"
+            firstName: "admin"
+            lastName: "admin"
+            email: "admin@gmail.com"
+            username: "admin"
+            accessType: "admin"
+            status: "active"
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZSI6MSwidHlwZSI6ImFkbWluIiwiYXQiOjE3MDAzODg5MDU2NjksImlhdCI6MTcwMDM4ODkwNSwiZXhwIjoxNzAwOTkzNzA1fQ.Am3k5f0N2ro2rKc6t-4mPb88Km3qLk3GxVQbl7_wq0Y"
+    AdminsForAdminUser:
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        accessType:
+          type: string
+          enum: [admin, operator]
+        status:
+          type: string
+          enum: [active, block]
+        createdAt:
+          type: string
+          format: 'ISO 8601'
+        updatedAt:
+          type: string
+          format: 'ISO 8601'
+      example:
+        id: "AD000001"
+        firstName: "edris"
+        lastName: "admin"
+        email: "tessop@gmail.com"
+        username: "admin"
+        accessType: "admin"
+        status: "active"
+        createdAt: "2023-11-19T10:14:50.635Z"
+        updatedAt: "2023-11-19T10:14:50.635Z"
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+
+  responses:
+    DuplicateEmail:
+      description: Email already taken
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Email already taken
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Please authenticate
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Forbidden
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  security:
+  - ApiKeyAuth: []
+  - bearerAuth:
+      - read
+      - write
+
+  examples:
+    objectExample:
+      value:
+        id: 1
+        name: new object
+      summary: A sample object

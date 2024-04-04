@@ -1,0 +1,69 @@
+{
+  "name": "school-trader",
+  "version": "1.0.0",
+  "description": "this project created for trade school online",
+  "main": "index.js",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2-runtime start ecosystem.config.json",
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "trader",
+    "electricity",
+    "backend"
+  ],
+  "author": "Edris Nasihatkon",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-validation": "^3.0.8",
+    "fs": "^0.0.1-security",
+    "http-status": "^1.5.0",
+    "ioredis": "^5.3.2",
+    "joi": "^17.11.0",
+    "jsdoc": "^3.6.6",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^4.0.0",
+    "moment": "^2.29.4",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "pm2": "^5.3.0",
+    "sequelize": "^6.33.0",
+    "socket.io": "^4.7.2",
+    "socket.io-redis": "^6.1.1",
+    "stripe": "^14.5.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
+  }
+}

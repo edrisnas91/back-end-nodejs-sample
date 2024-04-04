@@ -1,0 +1,31 @@
+version: '3.6'
+
+services:
+  node-nurse:
+    image: reg.diyacotech.com/diyac/nurses:main
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+    ports:
+      - '4150:3000'
+    networks:
+      - local-nurses
+  redis-nurses:
+    image: redis:latest
+    restart: always
+    ports:
+      - "63794:6379"
+    networks:
+      - local-nurses
+
+volumes:
+  dbdata:
+networks:
+  local-nurses:
+    driver: bridge
+
